@@ -1,4 +1,4 @@
-FROM ubuntu:latest 
+FROM alpine:lastest
 RUN apt-get update && apt-get install -y wget ca-certificates
 
 # Install Java7
@@ -11,3 +11,6 @@ RUN apt-get install -y mono-complete git-core
 RUN git clone https://github.com/CoiniumServ/CoiniumServ.git
 RUN cd CoiniumServ; git submodule init; git submodule update
 RUN cd CoiniumServ/build/release; ./build.sh
+
+EXPOSE 8081
+CMD ["mono", "/usr/local/bin/CoiniumServ/build/release/CoiniumServ.exe"]
